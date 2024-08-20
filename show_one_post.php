@@ -5,10 +5,8 @@ require_once 'Post.php';
 if (isset($_GET['id'])) {
     $id = $_GET['id'];
 
-    // إنشاء اتصال بقاعدة البيانات
     $db = new Database();
 
-    // جلب المقالة حسب الـ ID
     $post = Post::fetchById($db, $id);
 
     if (!$post) {

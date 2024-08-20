@@ -12,16 +12,6 @@ if (isset($_GET['id'])) {
     $post = Post::fetchById($db, $id);
 }
 
-// إذا لم يتم العثور على المقالة، إعادة التوجيه إلى الصفحة الرئيسية
-// if (!$post) {
-//     header('Location: showAll.php');
-//     exit();
-// }
-// } else {
-//     // إذا لم يتم تمرير ID، إعادة التوجيه إلى الصفحة الرئيسية
-//     header('Location: showAll.php');
-//     exit();
-// }
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     // جلب البيانات المعدلة من النموذج
@@ -48,13 +38,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $post->content = $content;
         $post->author = $author;
         var_dump($post);
-        // تحديث المقالة في قاعدة البيانات
         if ($post->update($db)) {
-            // إعادة التوجيه إلى صفحة عرض جميع المقالات بعد نجاح التعديل
             header('Location: showAll.php');
             exit();
         } else {
-            echo "فشل في تعديل المقالة: " . $db->conn->error; // عرض تفاصيل الخطأ
+            echo " cannot update this post  : " . $db->conn->error; 
         }
     }
 }
